@@ -1,0 +1,9 @@
+#!/bin/bash
+set -eu
+
+if [ "$DOCKERFILE_PATH" = "" ]; then
+    DOCKERFILE_PATH_ARG=""
+else
+    DOCKERFILE_PATH_ARG="-f $DOCKERFILE_PATH"
+fi
+docker build --build-arg=VERSION=${SOURCE_BRANCH} ${DOCKERFILE_PATH_ARG} -t $IMAGE_NAME .
